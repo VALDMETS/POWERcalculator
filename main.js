@@ -16,22 +16,22 @@ var minusbtn = document.getElementById('minus');
 var multiplybtn = document.getElementById('multiply');
 var dividebtn = document.getElementById('divide');
 var clearbtn = document.getElementById('clear');
-
 var calculatebtn = document.getElementById('calculate');
-
 
 var num = [''];
 var counter = 0;
 var operate = [''];
 var oc = 0;
-
 var final = 0;
-var evt = '';
+var viewStore = '';
 
 function buttonTime(e) {
   num[counter] = num[counter] + e.srcElement.value;
-  // console.log(num[counter]);
-  document.getElementById('view').value = num[counter];
+  document.getElementById('view').value = viewStore + num[counter];
+}
+function keyTime(k) {
+  num[counter] = num[counter] + k;
+  document.getElementById('view').value = viewStore +num[counter];
 }
 
 onebtn.addEventListener('click', buttonTime);
@@ -46,6 +46,12 @@ ninebtn.addEventListener('click', buttonTime);
 zerobtn.addEventListener('click', buttonTime);
 pointbtn.addEventListener('click', buttonTime);
 
+document.addEventListener('keyup', function (e){
+    if (e.keyCode>=48 && e.keyCode<=57) {
+      var getValue = (48 - e.keyCode) * -1;
+      keyTime(getValue);}
+});
+
 neg_posbtn.addEventListener('click', function(e) {
     var i = Number(num[counter]);
     if (i>0) {
@@ -55,8 +61,8 @@ neg_posbtn.addEventListener('click', function(e) {
         num[counter] = String(num[counter]);
         num[counter] = num[counter].replace('-','');
     }
-    // console.log(num[counter]);
-    document.getElementById('view').value = num[counter];
+    console.log(num[counter]);
+    document.getElementById('view').value = viewStore + num[counter];
 });
 
 clearbtn.addEventListener('click', function() {
@@ -75,6 +81,7 @@ function clearOut() {
     counter++;
     oc++;
     final = 0;
+    viewStore = '';
 }
 
 function nextNum() {
@@ -86,27 +93,48 @@ function nextNum() {
 plusbtn.addEventListener('click', function() {
     oc++;
     operate[oc] = 1;
+    viewStore = viewStore + num[counter] + '+';
     nextNum();
-    document.getElementById('view').value = '+' + num[counter];
+    document.getElementById('view').value = num[counter] + viewStore;
 });
 minusbtn.addEventListener('click', function() {
     oc++;
     operate[oc] = 2;
+    viewStore = viewStore + num[counter] + '-';
     nextNum();
-    document.getElementById('view').value = '-' + num[counter];
+    document.getElementById('view').value = viewStore + num[counter];
 });
 multiplybtn.addEventListener('click', function() {
     oc++;
     operate[oc] = 3;
+    viewStore = viewStore + num[counter] + '*';
     nextNum();
-    document.getElementById('view').value = '*' + num[counter];
+    document.getElementById('view').value = viewStore + num[counter];
 });
 dividebtn.addEventListener('click', function() {
     oc++;
     operate[oc] = 4;
+    viewStore = viewStore + num[counter] + '/';
     nextNum();
-    document.getElementById('view').value = '/' + num[counter];
+    document.getElementById('view').value = viewStore + num[counter];
 });
+
+//                                        lllllll
+//                                        l:::::l
+//                                        l:::::l
+//                                        l:::::l
+// cccccccccccccccc        aaaaaaaaaaaaa  l::::l     cccccccccccccccc
+// cc:::::::::::::::c     a::::::::::::a  l::::l    cc:::::::::::::::c
+// c:::::::::::::::::c   aaaaaaaaa:::::a  l::::l   c:::::::::::::::::c
+// c:::::::cccccc:::::c           a::::a  l::::l  c:::::::cccccc:::::c
+// c::::::c     ccccccc    aaaaaaa:::::a  l::::l  c::::::c     ccccccc
+// c:::::c               aa::::::::::::a  l::::l  c:::::c
+// c:::::c              a::::aaaa::::::a  l::::l  c:::::c
+// c::::::c     ccccccc a::::a    a:::::a l::::l  c::::::c     ccccccc
+// c:::::::cccccc:::::c a::::a    a:::::a l::::::l c:::::::cccccc:::::c
+// c:::::::::::::::::c  a:::::aaaa::::::a l::::::l  c:::::::::::::::::c
+// cc:::::::::::::::c   a::::::::::aa:::a l::::::l   cc:::::::::::::::c
+// cccccccccccccccc     aaaaaaaaaa   aaaa llllllll    cccccccccccccccc
 
 calculate.addEventListener('click', function() {
     for (i = 0; i <= oc; i++) {
@@ -129,3 +157,15 @@ calculate.addEventListener('click', function() {
     clearOut();
     num[counter] = String(num[counter]);
 });
+
+// NEW CALCULATOR GOD HELP US ALL
+// calculate.addEventListener('click', function() {
+//
+//     var holder = [0];
+//     holder = Number(num[0]);
+//     for (i = 0; i <=oc; i++) {
+//       if (operate[i] > 2) {
+//
+//       }
+//
+// });
