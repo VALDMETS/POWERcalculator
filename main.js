@@ -46,11 +46,11 @@ ninebtn.addEventListener('click', buttonTime);
 zerobtn.addEventListener('click', buttonTime);
 pointbtn.addEventListener('click', buttonTime);
 
-document.addEventListener('keyup', function (e){
-    if (e.keyCode>=48 && e.keyCode<=57) {
-      var getValue = (48 - e.keyCode) * -1;
-      keyTime(getValue);}
-});
+// document.addEventListener('keyup', function (e){
+//     if (e.keyCode>=48 && e.keyCode<=57) {
+//       var getValue = (48 - e.keyCode) * -1;
+//       keyTime(getValue);}
+// });
 
 neg_posbtn.addEventListener('click', function(e) {
     var i = Number(num[counter]);
@@ -79,7 +79,7 @@ function clearOut() {
         oc--;
     }
     counter++;
-    oc++;
+    oc = 0;
     final = 0;
     viewStore = '';
 }
@@ -119,53 +119,55 @@ dividebtn.addEventListener('click', function() {
     document.getElementById('view').value = viewStore + num[counter];
 });
 
-//                                        lllllll
-//                                        l:::::l
-//                                        l:::::l
-//                                        l:::::l
-//  cccccccccccccccc       aaaaaaaaaaaaa  l::::l    cccccccccccccccc
-// cc:::::::::::::::c     a::::::::::::a  l::::l   cc:::::::::::::::c
-// c:::::::::::::::::c   aaaaaaaaa:::::a  l::::l   c:::::::::::::::::c
-// c:::::::cccccc:::::c           a::::a  l::::l   c:::::::cccccc:::::c
-// c::::::c     ccccccc    aaaaaaa:::::a  l::::l   c::::::c     ccccccc
-// c:::::c               aa::::::::::::a  l::::l   c:::::c
-// c:::::c              a::::aaaa::::::a  l::::l   c:::::c
-// c::::::c     ccccccc a::::a    a:::::a l::::l   c::::::c     ccccccc
-// c:::::::cccccc:::::c a::::a    a:::::a l::::::l c:::::::cccccc:::::c
-// c:::::::::::::::::c  a:::::aaaa::::::a l::::::l c:::::::::::::::::c
-// cc:::::::::::::::c   a::::::::::aa:::a l::::::l cc:::::::::::::::c
-//  cccccccccccccccc    aaaaaaaaaa   aaaa llllllll  cccccccccccccccc
+// NEW CALCULATOR GOD HELP US ALL
+
+function calculateAll() {
+  var holder = 0;
+  for (i = 1; i <= oc; i++) {
+
+      num[i]=Number(num[i]);
+
+      if (operate[i] > 2) {
+
+        if (operate[i]===3) {
+            holder = num[(i-1)] * num[i];
+        }   else if (operate[i]===4){
+            holder = num[(i-1)] / num[i];
+        }
+        num[(i-1)] = holder;
+
+        for (k = i; k <= (oc-1); k++) {
+            num[k] = num[k+1];
+            operate[k] = operate[k+1];
+        }
+        num[oc]='';
+        operate[oc]=0;
+        oc--;
+        i--;
+      }
+  }
+
+  final = Number(num[0]);
+
+  for (i = 1; i <= oc; i++) {
+    if (operate[i] === 1) {
+      final = final + num[i];
+    } else if (operate[i] === 2){
+      final = final - num [i];
+    }
+  }
+
+  document.getElementById('view').value = final;
+  clearOut();
+  num[counter] = '';
+
+}
 
 calculate.addEventListener('click', function() {
-    for (i = 0; i <= oc; i++) {
-        num[i] = Number(num[i]);
-        if (i === 0) {
-            final = num[i];
-        } else
-        if (operate[i] === 1) {
-            final = final + num[i];
-        } else if (operate[i] === 2) {
-            final = final - num[i];
-        } else if (operate[i] === 3) {
-            final = final * num[i];
-        } else if (operate[i] === 4) {
-            final = final / num[i];
-        }
-    }
-    // console.log(final);
-    document.getElementById('view').value = final;
-    clearOut();
-    num[counter] = String(num[counter]);
+      calculateAll();
 });
-
-// NEW CALCULATOR GOD HELP US ALL
-// calculate.addEventListener('click', function() {
-//
-//     var holder = [0];
-//     holder = Number(num[0]);
-//     for (i = 0; i <=oc; i++) {
-//       if (operate[i] > 2) {
-//
+// document.addEventListener('keyup', function (e) {
+//     if (e.keyCode===13) {
+//       calculateAll();
 //       }
-//
 // });
