@@ -123,18 +123,18 @@ dividebtn.addEventListener('click', function() {
 //                                        l:::::l
 //                                        l:::::l
 //                                        l:::::l
-// cccccccccccccccc        aaaaaaaaaaaaa  l::::l     cccccccccccccccc
-// cc:::::::::::::::c     a::::::::::::a  l::::l    cc:::::::::::::::c
+//  cccccccccccccccc       aaaaaaaaaaaaa  l::::l    cccccccccccccccc
+// cc:::::::::::::::c     a::::::::::::a  l::::l   cc:::::::::::::::c
 // c:::::::::::::::::c   aaaaaaaaa:::::a  l::::l   c:::::::::::::::::c
-// c:::::::cccccc:::::c           a::::a  l::::l  c:::::::cccccc:::::c
-// c::::::c     ccccccc    aaaaaaa:::::a  l::::l  c::::::c     ccccccc
-// c:::::c               aa::::::::::::a  l::::l  c:::::c
-// c:::::c              a::::aaaa::::::a  l::::l  c:::::c
-// c::::::c     ccccccc a::::a    a:::::a l::::l  c::::::c     ccccccc
+// c:::::::cccccc:::::c           a::::a  l::::l   c:::::::cccccc:::::c
+// c::::::c     ccccccc    aaaaaaa:::::a  l::::l   c::::::c     ccccccc
+// c:::::c               aa::::::::::::a  l::::l   c:::::c
+// c:::::c              a::::aaaa::::::a  l::::l   c:::::c
+// c::::::c     ccccccc a::::a    a:::::a l::::l   c::::::c     ccccccc
 // c:::::::cccccc:::::c a::::a    a:::::a l::::::l c:::::::cccccc:::::c
-// c:::::::::::::::::c  a:::::aaaa::::::a l::::::l  c:::::::::::::::::c
-// cc:::::::::::::::c   a::::::::::aa:::a l::::::l   cc:::::::::::::::c
-// cccccccccccccccc     aaaaaaaaaa   aaaa llllllll    cccccccccccccccc
+// c:::::::::::::::::c  a:::::aaaa::::::a l::::::l c:::::::::::::::::c
+// cc:::::::::::::::c   a::::::::::aa:::a l::::::l cc:::::::::::::::c
+//  cccccccccccccccc    aaaaaaaaaa   aaaa llllllll  cccccccccccccccc
 
 calculate.addEventListener('click', function() {
     for (i = 0; i <= oc; i++) {

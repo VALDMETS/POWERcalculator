@@ -50,11 +50,13 @@ input {
 }
 .number-box input:active {
   background-color: #13A2CE;
-  opacity: .5;
+  opacity: .5s;
   /*color: #13A2CE;*/
 }
-#clear {
-  /*font-size: 100%;*/
+.number-box input:hover {
+  transition: .2s;
+  border-color: LightGray;
+  color: LightGray;
 }
 #calculate {
   width: 74%;
